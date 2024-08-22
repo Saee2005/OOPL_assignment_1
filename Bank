@@ -1,0 +1,106 @@
+#include <iostream>
+using namespace std;
+class bank
+{
+ public:    
+ int balance_amt=0,withdraw_amt,deposit_amt,ac_no,ch,t;
+ char name[10];
+ void basic_info(){
+     cout<<"\nEnter name of account holder: ";
+    cin>>name;
+    cout<<"Enter account no:";
+    cin>>ac_no;
+    cout<<"Enter balance/initial amount :";
+    cin>>balance_amt;
+    
+ }
+ void deposit_money()
+ {
+     cout<<"Enter amount you want to deposit: ";
+     cin>>deposit_amt;
+     balance_amt=balance_amt+deposit_amt;
+     cout<<"Account balance:"<<balance_amt;
+ }
+ void withdraw_money()
+{
+    cout<<"Enter withdarw amount:";
+    cin>>withdraw_amt;
+    if(withdraw_amt<=balance_amt){
+    balance_amt=balance_amt-withdraw_amt;
+    }
+    else{
+        cout<<("Insufficient balance");
+    }
+     cout<<"Account balance:"<<balance_amt;
+ }
+ void display(){
+     cout<<name<<"\t\t"<<ac_no<<"\t\t"<<balance_amt<<endl;
+ }
+    
+    
+};
+
+int main()
+{
+    bank a[10];
+    int ch,t,i,n,a_cno,flag=0;
+    cout<<"Enter the number of users data you want to enter:";
+    cin>>n;
+    for(i=0;i<n;i++){
+        a[i].basic_info();
+        
+        
+    }
+    
+    
+    do
+    {
+        
+        cout<<"Enter your choice\n1.Deposit amount\n2.Withdraw amount\n3.Display";
+        cin>>ch;
+        switch(ch){
+            case 1:cout<<"Enter the a/c no of user:";
+            cin>>a_cno;
+            for(i=0;i<n;i++){
+                if(a_cno==a[i].ac_no){
+                    a[i].deposit_money();
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0){
+                cout<<"A/C DOES NOT EXIST";
+            }
+            flag=0;
+            
+            
+            break;
+            case 2:cout<<"Enter the a/c no of user:";
+            cin>>a_cno;
+            for(i=0;i<n;i++){
+                if(a_cno==a[i].ac_no){
+                    a[i].withdraw_money();
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0){
+                cout<<"A/C DOES NOT EXIST";
+            }
+            flag=0;
+            case 3:cout<<"Name\t"<<"A/CNo\t"<<"A/CBalance\t"<<endl;
+            for(i=0;i<n;i++){
+                a[i].display();
+            }
+            break;
+            
+            default:cout<<"wrong choice";
+            
+        }
+        cout<<"\nDo you want to continue[press 1] to continue";
+        cin>>t;
+        
+    }while(t==1);
+ 
+    
+}
